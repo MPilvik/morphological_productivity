@@ -2,7 +2,7 @@ This repository contains the scripts and datasets for the analyses presented in 
 
 The repository contains 4 folders:  
 
-- **sample files**  
+- **[sample files](sample_files)**  
 	+ There are 1-2 sample files for each (sub)corpus. These files can be used to test the script *script1_sample_files.R*.  
 	+ The files for **the Balanced Corpus of Estonian** can be obtained from [here](https://www.cl.ut.ee/korpused/grammatikakorpus/index.php?lang=en). The files of the two spoken corpora ([**the Corpus of Estonian Dialects**](https://www.keel.ut.ee/et/keelekogud/murdekorpus) and [**the Phonetic Corpus of Estonian Spontaneous Speech**](https://www.keel.ut.ee/en/languages-resourceslanguages-resources/phonetic-corpus-estonian-spontaneous-speech)) are not publicly available. Access to the files can be requested by contacting the corpus administrators. The two sample files are published here with their permission.  
 - **scripts**  
