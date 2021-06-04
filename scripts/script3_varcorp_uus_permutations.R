@@ -1,6 +1,8 @@
 # Run permutations and check productivity.
 # Take corrected file lists as input
 # Shuffle file ordering 100 times
+# In the first shuffling round,
+# clean the verbs in the total samples.
 # For each shuffle order
 # - divide observations into subcorpora
 # - find token, type, hapax counts in subcorpora
@@ -11,6 +13,7 @@
 # Load the necessary packages
 library(svMisc)
 library(dplyr)
+library(xlsx)
 
 setwd(choose.dir()) # Set working directory to "data"
 
@@ -40,6 +43,19 @@ load("varcorp_uus_NEWS_filelists_corr.RData")
 load("varcorp_uus_FICT_filelists_corr.RData")
 load("varcorp_uus_SP_filelists_corr.RData")
 load("varcorp_uus_DIA_filelists_corr.RData")
+
+# Read clean verb lists
+SCIclean <- read.xlsx2("varcorp_uus_SCI_verbtypes.xlsx", sheetIndex = 1, as.data.frame = T)
+NEWSclean <- read.xlsx2("varcorp_uus_NEWS_verbtypes.xlsx", sheetIndex = 1, as.data.frame = T)
+FICTclean <- read.xlsx2("varcorp_uus_FICT_verbtypes.xlsx", sheetIndex = 1, as.data.frame = T)
+SPclean <- read.xlsx2("varcorp_uus_SP_verbtypes.xlsx", sheetIndex = 1, as.data.frame = T)
+DIAclean <- read.xlsx2("varcorp_uus_DIA_verbtypes.xlsx", sheetIndex = 1, as.data.frame = T)
+# Join all clean files
+clean <- rbind(SCIclean, NEWSclean, FICTclean, SPclean, DIAclean)
+
+# Create an empty list for storing the maximal subcorpora from each register
+# (contains also corrected verb stems)
+corverb <- list()
 
 ptm <- proc.time() # Time the script
 for(seed in 1:100){ # for each permutation round
@@ -178,7 +194,66 @@ for(seed in 1:100){ # for each permutation round
     close(pb1)
     
     
-    #---FIND TYPE, TOKEN, HAPAX COUNTS (incl. for samples)---####
+    #---CLEAN THE VERBS IN THE MAXIMAL SUBCORPUS---####
+    # Do this only once, since the largest subcorpora (> 426,000 tokens) are the same in all 100 permutations 
+    # (= they include the same words, but in a different order)
+    if(seed == 1){ # if you're running the 1st permutation
+      # get the names of all existing subcorpora in the workspace
+      corpsub <- grep("subcorp", ls(), value = TRUE)
+      # get the biggest subcorpus 
+      maxcorp_for_verbs <- suppressWarnings(corpsub[which.max(as.numeric(gsub("^subcorp([0-9]+)$", "\\1", corpsub)))])
+      v <- get(maxcorp_for_verbs)
+      
+      # Clean the verbs
+      cat("Cleaning the verbs.", "\n") # print a message to the console
+      idx <- 1 # set an index
+      
+      for(i in unique(v[["verb"]])){ # for each verb in the largest subcorpus in a register
+        if(i %in% clean$Original){ # if the verb is in the previously corrected table
+          if(nrow(unique(clean[clean$Original == i,])) == 1){ # and if it has only one unique analysis
+            if(unique(clean[clean$Original == i,]$Comment) != "välja"){ # and the verb is a verb (and not something else which should be left out)
+              # then replace the verb in the subcorpus with the correct version from the corrected table "clean"
+              v[["verb"]][v[["verb"]] == i] <- unique(clean[clean$Original == i,]$Corrected) 
+            }
+            else{ # if the verb is not really a verb and should be left out
+              v[["verb"]] <- v[["verb"]][v[["verb"]] != i] # remove the "verb" from the verb list
+            }
+            idx <- idx+1 # increase index by 1
+          }
+          else{ # if the verb is in the previously corrected list, but it has more than one unique analysis
+            if("" %in% unique(clean[clean$Original == i,]$Comment)){ # if the comment column of the "clean" table is empty (= the verb is a verb)
+              cat(i, "has > 1 analyses.", "\n") # print a message to the console
+              v[["verb"]][v[["verb"]] == i] <- clean[clean$Original == i & clean$Comment == "",]$Corrected[1] # and keep only one correct analysis
+            }
+            else{ # if the verb is not really a verb and should be left out
+              cat(i, "has > 1 analyses, but it will be left out.", "\n") # print a message to the console
+              v[["verb"]] <- v[["verb"]][v[["verb"]] != i] # remove the "verb" from the verb list
+            }
+            idx <- idx+1 # increase index by 1
+          }
+        }
+        else{ # if the verb is not in the previously corrected table
+          cat(idx, "/", length(unique(v[["verb"]])), ":", i, "is not in the table. Enter correction manually", "\n") # print a message to the console
+          inp <- readline(prompt = "Enter correction here: ") # prompt the user to correct the verb manually
+          if(inp == "välja"){ # if the user decides that the "verb" should be left out
+            v[["verb"]] <- v[["verb"]][v[["verb"]] != i] # in which case leave it out
+          }
+          else{ 
+            v[["verb"]][v[["verb"]] == i] <- inp # otherwise replace the verb in the subcorpus with the version entered
+          }
+          idx <- idx+1 # increase index by 1
+        }
+      }
+    
+      # Add the largest cleaned subcorpus from a register
+      # to the register list
+      corverb <- append(corverb, list(v))
+      names(corverb)[length(corverb)] <- reg
+    }
+    save(corverb, file = "varcorp_uus_maxverbcorr.RData")
+    
+    
+    #---FIND TYPE, TOKEN, HAPAX COUNTS---####
     
     # Create empty vectors for
     sizes <- numeric() # subcorpus sizes
