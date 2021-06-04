@@ -2,47 +2,48 @@ This repository contains the scripts and datasets for the analyses presented in 
 
 The repository contains 4 folders:  
 
-- **sample files**  
-	+ There are 1-2 sample files for each (sub)corpus. These files can be used to test the script *script1_sample_files.R*.  
+- **[sample files](./sample_files)**  
+	+ There are 1-2 sample files for each (sub)corpus. These files can be used to test the script *[script1_sample_files.R](./scripts/script1_sample_files.R)*.  
 	+ The files for **the Balanced Corpus of Estonian** can be obtained from [here](https://www.cl.ut.ee/korpused/grammatikakorpus/index.php?lang=en). The files of the two spoken corpora ([**the Corpus of Estonian Dialects**](https://www.keel.ut.ee/et/keelekogud/murdekorpus) and [**the Phonetic Corpus of Estonian Spontaneous Speech**](https://www.keel.ut.ee/en/languages-resourceslanguages-resources/phonetic-corpus-estonian-spontaneous-speech)) are not publicly available. Access to the files can be requested by contacting the corpus administrators. The two sample files are published here with their permission.  
-- **scripts**  
+- **[scripts](./scripts)**  
+	+ The scripts were most recently tested with R version 4.0.3 and RStudio version 1.4.1103.   
 	+ The scripts are numbered according to their relevance in the workflow.  
-	+ **script1_sample_files.R** samples random files from the 5 (sub)corpora so that the total token count in each sample would be ~426,000 tokens.  
+	+ **[script1_sample_files.R](./scripts/script1_sample_files.R)** samples random files from the 5 (sub)corpora so that the total token count in each sample would be ~426,000 tokens.  
 		- **Output**: samples_426k_filesNtokencounts.RData (names and sizes of the sampled files).  
-	+ **script2_varcorp_uus_NEWS_filelists_subcorpora.R**, **script2_varcorp_uus_FICT_filelists_subcorpora.R**, **script2_varcorp_uus_SCI_filelists_subcorpora.R**, **script2_varcorp_uus_SP_filelists_subcorpora.R**, and **script2_varcorp_uus_DIA_filelists_subcorpora.R** extract all -*mine*, -*us*, and -*ja* nouns, verbs and all lemmas from the sample files, and clean the word lists from unwanted query results (only for the three suffixes).  
+	+ **[script2_varcorp_uus_NEWS_filelists_subcorpora.R](./scripts/script2_varcorp_uus_NEWS_filelists_subcorpora.R)**, **[script2_varcorp_uus_FICT_filelists_subcorpora.R](./scripts/script2_varcorp_uus_FICT_filelists_subcorpora.R)**, **[script2_varcorp_uus_SCI_filelists_subcorpora.R](./scripts/script2_varcorp_uus_SCI_filelists_subcorpora.R)**, **[script2_varcorp_uus_SP_filelists_subcorpora.R](./scripts/script2_varcorp_uus_SP_filelists_subcorpora.R)**, and **[script2_varcorp_uus_DIA_filelists_subcorpora.R](./scripts/script2_varcorp_uus_DIA_filelists_subcorpora.R)** extract all -*mine*, -*us*, and -*ja* nouns, verbs and all lemmas from the sample files, and clean the word lists from unwanted query results (only for the three suffixes).  
 		- **Input**:  
-			+ sample files in folders *sample_files*;   
-			+ *samples426k_filesNtokencounts.RData* (names and sizes of the sampled files);  
-			+ *SCI_mine_varcorp_all.csv*, *NEWS_mine_varcorp_all.csv*, *FICT_mine_varcorp_all.csv*, *SP_mine_varcorp_all.csv*, *DIA_mine_varcorp_all.csv* (previously manually corrected lists of -*mine* nouns in the corresponding register);  
-			+ *SCI_ja_varcorp_all.csv*, *NEWS_ja_varcorp_all.csv*, *FICT_ja_varcorp_all.csv*, *SP_ja_varcorp_all.csv*, *DIA_ja_varcorp_all.csv* (previously manually corrected lists of -*ja* nouns in the corresponding register);  
-			+ *SCI_us_varcorp_all.csv*, *NEWS_us_varcorp_all.csv*, *FICT_us_varcorp_all.csv*, *SP_us_varcorp_all.csv*, *DIA_us_varcorp_all.csv* (previously manually corrected lists of -*us* nouns in the corresponding register).  
+			+ sample files in folders *[sample_files](./sample_files)*;   
+			+ *[samples426k_filesNtokencounts.RData](./data/samples426k_filesNtokencounts.RData)* (names and sizes of the sampled files);  
+			+ *[SCI_mine_varcorp_all.csv](./data/SCI_mine_varcorp_all.csv)*, *[NEWS_mine_varcorp_all.csv](./data/NEWS_mine_varcorp_all.csv)*, *[FICT_mine_varcorp_all.csv](./data/FICT_mine_varcorp_all.csv)*, *[SP_mine_varcorp_all.csv](./data/SP_mine_varcorp_all.csv)*, *[DIA_mine_varcorp_all.csv](./data/DIA_mine_varcorp_all.csv)* (previously manually corrected lists of -*mine* nouns in the corresponding register);  
+			+ *[SCI_ja_varcorp_all.csv](./data/SCI_ja_varcorp_all.csv)*, *[NEWS_ja_varcorp_all.csv](./data/NEWS_ja_varcorp_all.csv)*, *[FICT_ja_varcorp_all.csv](./data/FICT_ja_varcorp_all.csv)*, *[SP_ja_varcorp_all.csv](./data/SP_ja_varcorp_all.csv)*, *[DIA_ja_varcorp_all.csv](./data/DIA_ja_varcorp_all.csv)* (previously manually corrected lists of -*ja* nouns in the corresponding register);  
+			+ *[SCI_us_varcorp_all.csv](./data/SCI_us_varcorp_all.csv)*, *[NEWS_us_varcorp_all.csv](./data/NEWS_us_varcorp_all.csv)*, *[FICT_us_varcorp_all.csv](./data/FICT_us_varcorp_all.csv)*, *[SP_us_varcorp_all.csv](./data/SP_us_varcorp_all.csv)*, *[DIA_us_varcorp_all.csv](./data/DIA_us_varcorp_all.csv)* (previously manually corrected lists of -*us* nouns in the corresponding register).  
 		- **Output**:  
-			+ *varcorp_uus_SCI_filelists.RData*, *varcorp_uus_NEWS_filelists.RData*, *varcorp_uus_FICT_filelists.RData*, *varcorp_uus_SP_filelists.RData*, *varcorp_uus_DIA_filelists.RData* (the initial word lists compiled from the files);
-			+ *varcorp_uus_SCI_filelists_corr.RData*, *varcorp_uus_NEWS_filelists_corr.RData*, *varcorp_uus_FICT_filelists_corr.RData*, *varcorp_uus_SP_filelists_corr.RData*, *varcorp_uus_DIA_filelists_corr.RData* (the corrected word lists compiled from the files).   
-	+ **script3_varcorp_uus_permutations.R** permutes the sample file ordering 100 times. Each time, the files from each register are divided into 21 subcorpora of cumulatively increasing size (each subcorpus is 21,300 tokens larger than the previous subcorpus). In each subcorpus, type, token, and hapax counts are calculated for the suffix tokens and for all tokens in general. These counts are the basis for finding the realized, potential, and expanding productivity measures. The script also creates corrected lists of both suffix and verb tokens for the largest of the 21 subcorpora in each register (i.e., the word lists in the total sample in each register). This is done only during the first permutation, since the largest subcorpus for a single register has identical contents in all 100 permutations (i.e., it contains the same words, but in a different order).   
+			+ *[varcorp_uus_SCI_filelists.RData](./data/varcorp_uus_SCI_filelists.RData)*, *[varcorp_uus_NEWS_filelists.RData](./data/varcorp_uus_NEWS_filelists.RData)*, *[varcorp_uus_FICT_filelists.RData](./data/varcorp_uus_FICT_filelists.RData)*, *[varcorp_uus_SP_filelists.RData](./data/varcorp_uus_SP_filelists.RData)*, *[varcorp_uus_DIA_filelists.RData](./data/varcorp_uus_DIA_filelists.RData)* (the initial word lists compiled from the files);
+			+ *[varcorp_uus_SCI_filelists_corr.RData](./data/varcorp_uus_SCI_filelists_corr.RData)*, *[varcorp_uus_NEWS_filelists_corr.RData](./data/varcorp_uus_NEWS_filelists_corr.RData)*, *[varcorp_uus_FICT_filelists_corr.RData](./data/varcorp_uus_FICT_filelists_corr.RData)*, *[varcorp_uus_SP_filelists_corr.RData](./data/varcorp_uus_SP_filelists_corr.RData)*, *[varcorp_uus_DIA_filelists_corr.RData](./data/varcorp_uus_DIA_filelists_corr.RData)* (the corrected word lists compiled from the files).   
+	+ **[script3_varcorp_uus_permutations.R](./scripts/script3_varcorp_uus_permutations.R)** permutes the sample file ordering 100 times. Each time, the files from each register are divided into 21 subcorpora of cumulatively increasing size (each subcorpus is 21,300 tokens larger than the previous subcorpus). In each subcorpus, type, token, and hapax counts are calculated for the suffix tokens and for all tokens in general. These counts are the basis for finding the realized, potential, and expanding productivity measures. The script also creates corrected lists of both suffix and verb tokens for the largest of the 21 subcorpora in each register (i.e., the word lists in the total sample in each register). This is done only during the first permutation, since the largest subcorpus for a single register has identical contents in all 100 permutations (i.e., it contains the same words, but in a different order).   
 		- **Input**: 
-			+ *varcorp_uus_SCI_filelists_corr.RData*, *varcorp_uus_NEWS_filelists_corr.RData*, *varcorp_uus_FICT_filelists_corr.RData*, *varcorp_uus_SP_filelists_corr.RData*, *varcorp_uus_DIA_filelists_corr.RData* (the corrected word lists compiled from the files);  
-			+ *varcorp_uus_SCI_verbtypes.xlsx*, *varcorp_uus_NEWS_verbtypes.xlsx*, *varcorp_uus_FICT_verbtypes.xlsx*, *varcorp_uus_SP_verbtypes.xlsx*, *varcorp_uus_DIA_verbtypes.xlsx* (the previously manually corrected verb lists).  
+			+ *[varcorp_uus_SCI_filelists_corr.RData](./data/varcorp_uus_SCI_filelists_corr.RData)*, *[varcorp_uus_NEWS_filelists_corr.RData](./data/varcorp_uus_NEWS_filelists_corr.RData)*, *[varcorp_uus_FICT_filelists_corr.RData](./data/varcorp_uus_FICT_filelists_corr.RData)*, *[varcorp_uus_SP_filelists_corr.RData](./data/varcorp_uus_SP_filelists_corr.RData)*, *[varcorp_uus_DIA_filelists_corr.RData](./data/varcorp_uus_DIA_filelists_corr.RData)* (the corrected word lists compiled from the files);  
+			+ *[varcorp_uus_SCI_verbtypes.xlsx](./data/varcorp_uus_SCI_verbtypes.xlsx)*, *[varcorp_uus_NEWS_verbtypes.xlsx](./data/varcorp_uus_NEWS_verbtypes.xlsx)*, *[varcorp_uus_FICT_verbtypes.xlsx](./data/varcorp_uus_FICT_verbtypes.xlsx)*, *[varcorp_uus_SP_verbtypes.xlsx](./data/varcorp_uus_SP_verbtypes.xlsx)*, *[varcorp_uus_DIA_verbtypes.xlsx](./data/varcorp_uus_DIA_verbtypes.xlsx)* (the previously manually corrected verb lists).  
 		- **Output**: 
-			+ *varcorp_uus_100_permutations.csv* (a data frame with type, token, and hapax counts, and the realized, potential, and expanding productivity measures for each suffix (3) in each subcorpus (21) of each register (5) in each permutation round (100), yielding altogether 3\*21\*5\*100 = 31,500 rows);  
-			+ *varcorp_uus_maxverbcorr.RData* (the corrected word lists for the total samples).  
-	+ **script4_varcorp_uus_perm_productivity.R** calculates the mean productivity values and the 95% confidence intervals based on the values obtained in the permutations, and creates visualizations.   
-		- **Input**: *varcorp_uus_100_permutations.csv* (a data frame with productivity measures).  
+			+ *[varcorp_uus_100_permutations.csv](./data/varcorp_uus_100_permutations.csv)* (a data frame with type, token, and hapax counts, and the realized, potential, and expanding productivity measures for each suffix (3) in each subcorpus (21) of each register (5) in each permutation round (100), yielding altogether 3\*21\*5\*100 = 31,500 rows);  
+			+ *[varcorp_uus_maxverbcorr.RData](./data/varcorp_uus_maxverbcorr.RData)* (the corrected word lists for the total samples).  
+	+ **[script4_varcorp_uus_perm_productivity.R](./scripts/script4_varcorp_uus_perm_productivity.R)** calculates the mean productivity values and the 95% confidence intervals based on the values obtained in the permutations, and creates visualizations.   
+		- **Input**: *[varcorp_uus_100_permutations.csv](./data/varcorp_uus_100_permutations.csv)* (a data frame with productivity measures).  
 		- **Output**: 
-			+ *varcorp_uus_perm_prod_means.RData* (6 data frames with the mean values of type, token, and hapax counts, and realized, potential, and expanding productivity for each suffix (3) in each subcorpus (21) of each register (5); the values are averaged across the 100 permutations);   
-			+ *varcorp_uus_perm_realized_prod.png*, *varcorp_uus_perm_potential_prod.png*, *varcorp_uus_perm_expanding_prod.png*, *varcorp_uus_perm_global_prod.png*, *varcorp_uus_perm_types_tokens_hapaxes.png* (visualizations of the productivity measures).  
-	+ **script5_varcorp_uus_perm_gams_comparisons.R** interpolates potential productivity values all suffixes at equal number of suffix tokens and plots various comparisons.  
-		- **Input**: *varcorp_uus_100_permutations.csv*, *varcorp_uus_perm_prod_means.RData*.  
-		- **Output**: *varcorp_uus_perm_PbyNc_Ncf.png*, *varcorp_uus_perm_Pratios.png*, *varcorp_uus_perm_expvspot.png*, *varcorp_uus_perm_P_comparisons.png* (comparisons including potential productivity).  
-	+ **script6_varcorp_uus_relativefreqs.R** visualizes the relative frequencies of derivations and their verbal bases, compares the relative frequencies of -*mine* and -*us* nouns derived from the same base, and compares the character sequencies with which the base stems for -*mine* nouns, -*us* nouns and verbs end.  
+			+ *[varcorp_uus_perm_prod_means.RData](./data/varcorp_uus_perm_prod_means.RData)* (6 data frames with the mean values of type, token, and hapax counts, and realized, potential, and expanding productivity for each suffix (3) in each subcorpus (21) of each register (5); the values are averaged across the 100 permutations);   
+			+ *[varcorp_uus_perm_realized_prod.png](./figures/varcorp_uus_perm_realized_prod.png)*, *[varcorp_uus_perm_potential_prod.png](./figures/varcorp_uus_perm_potential_prod.png)*, *[varcorp_uus_perm_expanding_prod.png](./figures/varcorp_uus_perm_expanding_prod.png)*, *[varcorp_uus_perm_global_prod.png](./figures/varcorp_uus_perm_global_prod.png)*, *[varcorp_uus_perm_types_tokens_hapaxes.png](./figures/varcorp_uus_perm_types_tokens_hapaxes.png)* (visualizations of the productivity measures).  
+	+ **[script5_varcorp_uus_perm_gams_comparisons.R](./scripts/script5_varcorp_uus_perm_gams_comparisons.R)** interpolates potential productivity values all suffixes at equal number of suffix tokens and plots various comparisons.  
+		- **Input**: *[varcorp_uus_100_permutations.csv](./data/varcorp_uus_100_permutations.csv)*, *[varcorp_uus_perm_prod_means.RData](./data/varcorp_uus_perm_prod_means.RData)*.  
+		- **Output**: *[varcorp_uus_perm_PbyNc_Ncf.png](./figures/varcorp_uus_perm_PbyNc_Ncf.png)*, *[varcorp_uus_perm_Pratios.png](./figures/varcorp_uus_perm_Pratios.png)*, *[varcorp_uus_perm_expvspot.png](./figures/varcorp_uus_perm_expvspot.png)*, *[varcorp_uus_perm_P_comparisons.png](./figures/varcorp_uus_perm_P_comparisons.png)* (comparisons including potential productivity).  
+	+ **[script6_varcorp_uus_relativefreqs.R](./scripts/script6_varcorp_uus_relativefreqs.R)** visualizes the relative frequencies of derivations and their verbal bases, compares the relative frequencies of -*mine* and -*us* nouns derived from the same base, and compares the character sequencies with which the base stems for -*mine* nouns, -*us* nouns and verbs end.  
 		- **Input**:  
-			+ *varcorp_uus_maxverbcorr.RData* (the corrected word lists for the total samples);  
-			+ *varcorp_uus_basevsderiv_lexemelist.xlsx* (the English translations for some base lexemes).  
+			+ *[varcorp_uus_maxverbcorr.RData](./data/varcorp_uus_maxverbcorr.RData)* (the corrected word lists for the total samples);  
+			+ *[varcorp_uus_basevsderiv_lexemelist.xlsx](./data/varcorp_uus_basevsderiv_lexemelist.xlsx)* (the English translations for some base lexemes).  
 		- **Output**:  
-			+ *varcorp_uus_basevsderiv_grid.png* (verbal base frequencies *vs*. derivation base frequencies);  
-			+ *varcorp_uus_mine_vs_us_base.png* (relative frequencies of -*mine* *vs*. -*us* nouns);  
-			+ *varcorp_uus_baseendseq.png* (base stem ending frequencies among -*mine* nouns, -*us* nouns and verbs).  
-- **data**  
+			+ *[varcorp_uus_basevsderiv_grid.png](./figures/varcorp_uus_basevsderiv_grid.png)* (verbal base frequencies *vs*. derivation base frequencies);  
+			+ *[varcorp_uus_mine_vs_us_base.png](./figures/varcorp_uus_mine_vs_us_base.png)* (relative frequencies of -*mine* *vs*. -*us* nouns);  
+			+ *[varcorp_uus_baseendseq.png](./figures/varcorp_uus_baseendseq.png)* (base stem ending frequencies among -*mine* nouns, -*us* nouns and verbs).  
+- **[data](./data)**  
 	+ All the input and output datasets.  
-- **figures**  
+- **[figures](./figures)**  
 	+ All the figures obtained in the analyses.  
